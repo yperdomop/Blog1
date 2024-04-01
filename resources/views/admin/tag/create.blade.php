@@ -3,6 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
+    <a class="btn btn-link" href="{{ route('admin.tags.index') }}"><u>Volver</u></a>
     <h1>Crear etiqueta</h1>
 @stop
 

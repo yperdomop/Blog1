@@ -1,6 +1,11 @@
 <div class="card">
     <div class="card-header">
-        <input type="text" wire:model.live="search" class="form-control" placeholder="Ingrese el nombre del posts">
+        <div class="input-group">
+            <input type="text" wire:model.live="search" class="form-control" placeholder="Ingrese el nombre del posts">
+            <div class="input-group-append">
+                <span class="input-group-text search-icon" title="Buscar"><i class="fa fa-search"></i></span>
+            </div>
+        </div>
     </div>
 
     @if ($posts->count())

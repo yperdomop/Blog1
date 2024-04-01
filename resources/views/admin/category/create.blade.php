@@ -3,6 +3,7 @@
 @section('title', 'Prueba')
 
 @section('content_header')
+    <a class="btn btn-link" href="{{ route('admin.categories.index') }}"><u>Volver</u></a>
     <h1>Crear Categoria</h1>
 @stop
 
