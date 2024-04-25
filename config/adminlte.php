@@ -312,7 +312,21 @@ return [
 
 
         // Sidebar items:
-
+        [
+            'text' => 'Dashboard',
+            'route'  => 'admin.home',
+            'icon' => 'fas fa-chart-line',
+        ],
+        [
+            'text' => 'Usuarios',
+            'route'  => 'admin.users.index',
+            'icon' => 'fas fa-users',
+        ],
+        [
+            'text' => 'Lista de roles',
+            'route'  => 'admin.roles.index',
+            'icon' => 'fas fa-users-cog',
+        ],
 
         ['header' => 'ADMINISTRADOR'],
         [
@@ -333,6 +347,7 @@ return [
             'text'       => 'Lista de post',
             'route'        => 'admin.posts.index',
             'icon' => 'far fa-fw fa-clipboard',
+
         ],
         [
             'text'       => 'Crear nuevo post',

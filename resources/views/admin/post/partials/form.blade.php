@@ -76,7 +76,6 @@
                 <small class="text-danger">{{ $message }}</small>
             @enderror
         </div>
-
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora facilis assumenda doloremque eius
         nulla aspernatur doloribus alias dolorum quaerat a. Quibusdam enim corrupti culpa? Accusamus excepturi
         corporis nostrum nemo iusto!

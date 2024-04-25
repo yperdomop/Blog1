@@ -1,41 +1,46 @@
-<div class="card">
-    <div class="card-header">
-        <div class="input-group">
-            <input type="text" wire:model.live="search" class="form-control" placeholder="Ingrese el nombre del posts">
-            <div class="input-group-append">
-                <span class="input-group-text search-icon" title="Buscar"><i class="fa fa-search"></i></span>
-            </div>
-        </div>
-    </div>
+@extends('adminlte::page')
 
-    @if ($posts->count())
+@section('title', 'Dashboard')
+
+@section('content_header')
+    <a class="btn btn-secondary btn-sm float-right" href="{{ route('admin.roles.create') }}">Crear nuevo rol</a>
+    <h1>Lista de roles</h1>
+@stop
+
+@section('content')
+    @if (session('info'))
+        <div class="alert alert-success">
+            <strong>{{ session('info') }}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true" style="color: white;">&times;</span>
+            </button>
+        </div>
+    @endif
+    <div class="card">
         <div class="card-body">
             <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Estado</th>
+                        <th>Rol</th>
                         <th colspan="2">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($posts as $post)
+                    @foreach ($roles as $role)
                         <tr>
-                            <td>{{ $post->id }}</td>
-                            <td>{{ $post->name }}</td>
-                            <td>{{ $post->statusText }}</td> {{--  con text me devuelve el nombre no el numero  --}}
+                            <td>{{ $role->id }}</td>
+                            <td>{{ $role->name }}</td>
                             <td width="10px">
-                                <a class="btn btn-primary btn-sm"
-                                    href="{{ route('admin.posts.edit', $post) }}">Editar</a>
+                                <a class="btn btn-primary btn-sm" href="{{ route('admin.roles.edit', $role) }}">Editar</a>
                             </td>
                             <td width="10px">
-                                <form id="delete-form-{{ $post->id }}"
-                                    action="{{ route('admin.posts.destroy', $post) }}" method="POST">
+                                <form id="delete-form-{{ $role->id }}"
+                                    action="{{ route('admin.roles.destroy', $role) }}" method="POST">
                                     @csrf
                                     @method('delete')
                                     <button type="button" class="btn btn-danger btn-sm btn-delete"
-                                        onclick="confirmDelete({{ $post->id }})">Eliminar</button>
+                                        onclick="confirmDelete({{ $role->id }})">Eliminar</button>
                                 </form>
                             </td>
                         </tr>
@@ -44,15 +49,9 @@
                 </tbody>
             </table>
         </div>
-        <div class="card-footer">
-            {{ $posts->links() }}
-        </div>
-    @else
-        <div class="card-body">
-            <strong>No hay ningun registro con este nombre...</strong>
-        </div>
-    @endif
-</div>
+    </div>
+@stop
+
 {{--  importar sweetalert  --}}
 @section('js')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -74,3 +73,7 @@
         }
     </script>
 @endsection
+
+@section('css')
+
+@stop

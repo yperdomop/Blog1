@@ -3,60 +3,66 @@
 @section('title', 'Prueba')
 
 @section('content_header')
-<a class="btn btn-link" href="{{ route('admin.categories.index') }}"><u>Volver</u></a>
-    <h1>Editar Categoria</h1>
-@stop
 
-@section('content')
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>Editar Categoria</h1>
+        <div><a class="btn btn-link" href="{{ route('admin.categories.index') }}"><u>Volver</u></a></div>
+    @stop
 
-<div class="card">
-    <div class="card-body">      
-        {!! Form::model($category, ['route' => ['admin.categories.update', $category], 'method' => 'POST']) !!}
-        @method('PUT')
+    @section('content')
 
-   <div class="form-group">    
-    {!! Form::label('name','Nombre') !!}       
-    {!! Form::text('name', null, ['class'=>'form-control','placeholder'=>'Ingrese el nombre de la categoría']) !!}  
+        <div class="card">
+            <div class="card-body">
+                {!! Form::model($category, ['route' => ['admin.categories.update', $category], 'method' => 'POST']) !!}
+                @method('PUT')
 
-    @error('name')
-    <span class="text-danger">{{$message}}</span>   
-    @enderror
+                <div class="form-group">
+                    {!! Form::label('name', 'Nombre') !!}
+                    {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el nombre de la categoría']) !!}
 
-   </div>
-   <div class="form-group">    
-    {!! Form::label('slug','Slug') !!}       
-    {!! Form::text('slug', null, ['class'=>'form-control','placeholder'=>'Ingrese el slug de la categoría','readonly']) !!} 
-    
-    @error('slug')
-    <span class="text-danger">{{$message}}</span>   
-    @enderror
+                    @error('name')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
 
-   </div>
-   {!! Form::submit('Actualizar Categoría', ['class'=>'btn btn-primary']) !!}
+                </div>
+                <div class="form-group">
+                    {!! Form::label('slug', 'Slug') !!}
+                    {!! Form::text('slug', null, [
+                        'class' => 'form-control',
+                        'placeholder' => 'Ingrese el slug de la categoría',
+                        'readonly',
+                    ]) !!}
 
-   {!! Form::close() !!}
+                    @error('slug')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
 
-    </div>
-</div>
+                </div>
+                {!! Form::submit('Actualizar Categoría', ['class' => 'btn btn-primary']) !!}
 
-@stop
+                {!! Form::close() !!}
 
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
+            </div>
+        </div>
 
-@section('js')
+    @stop
 
-<script src="{{asset('vendor/jQuery-Plugin-stringToSlug-1.3/jquery.stringToSlug.min.js') }}"></script>
+    @section('css')
+        <link rel="stylesheet" href="/css/admin_custom.css">
+    @stop
 
-<script>
-    $(document).ready( function() {
-        $("#name").stringToSlug({
-          setEvents: 'keyup keydown blur',
-          getPut: '#slug',
-          space: '-'
-        });
-      });
-</script>
+    @section('js')
 
-@endsection
+        <script src="{{ asset('vendor/jQuery-Plugin-stringToSlug-1.3/jquery.stringToSlug.min.js') }}"></script>
+
+        <script>
+            $(document).ready(function() {
+                $("#name").stringToSlug({
+                    setEvents: 'keyup keydown blur',
+                    getPut: '#slug',
+                    space: '-'
+                });
+            });
+        </script>
+
+    @endsection

@@ -4,14 +4,16 @@
 
 @section('content_header')
     <a class="btn btn-secondary btn-sm float-right" href="{{ route('admin.tags.create') }}">Agregar Etiqueta</a>
-
-    <h1>Mostrar listado de etiquetas</h1>
+    <h1>Lista de etiquetas</h1>
 @stop
 
 @section('content')
     @if (session('info'))
         <div class="alert alert-success">
             <strong>{{ session('info') }}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true" style="color: white;">&times;</span>
+            </button>
         </div>
     @endif
     <div class="card">

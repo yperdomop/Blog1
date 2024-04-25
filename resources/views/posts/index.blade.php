@@ -1,9 +1,9 @@
 <x-app-layout>
     <div class='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 py-8'>
-        {{--  colocamos tamaño de pantallas responsive   --}}
+        {{--   colocamos tamaño de pantallas responsive  --}}
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            {{--   recuperamos la imagen del post bg cover no se deforme la imagen, leading-8 interlineado, font-bold ancho grueso --}}
+            {{-- recuperamos la imagen del post bg cover no se deforme la imagen, leading-8 interlineado, font-bold ancho grueso --}}
             @foreach ($posts as $post)
                 <article class="w-full h-80 bg-cover bg-center @if ($loop->first) md:col-span-2 @endif"
                     style="background-image: url(@if ($post->image) {{ Storage::url($post->image->url) }} @else https://cdn.pixabay.com/photo/2024/01/19/19/46/ai-generated-8519696_1280.jpg @endif) ">
@@ -34,4 +34,5 @@
             {{ $posts->links() }}
         </div>
     </div>
+
 </x-app-layout>

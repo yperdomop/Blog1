@@ -3,12 +3,10 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <a class="btn btn-secondary btn-sm float-right" href="{{ route('admin.posts.create') }}">Crear nuevo posts</a>
-    <h1>Lista de post</h1>
+    <h1>Lista de usuarios</h1>
 @stop
 
 @section('content')
-
     @if (session('info'))
         <div class="alert alert-success">
             <strong>{{ session('info') }}</strong>
@@ -17,8 +15,7 @@
             </button>
         </div>
     @endif
-
-    @livewire('admin.posts-index')
+    @livewire('admin.users-index')
 @stop
 
 @section('css')

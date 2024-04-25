@@ -18,7 +18,6 @@ class PostController extends Controller
         return view('admin.post.index');
     }
 
-
     public function create()
     {
         /*  metodo pluck genera array pero solo con el campo name de cada objeto  y la función  prepend agrega un campo al comienzo del array en la vista se ve*/
@@ -28,6 +27,7 @@ class PostController extends Controller
     }
 
     //llamamos a StorePostRequest y lo importamos aqui para ver las validaciones
+
     public function store(PostRequest $request)
     {
         //en que carpeta queremos q se almacene la img,y el 2 parámetro es la ruta
@@ -47,7 +47,7 @@ class PostController extends Controller
         if ($request->tags) {
             $post->tags()->attach($request->tags);
         }
-        return redirect()->route('admin.posts.edit', $post);
+        return redirect()->route('admin.posts.index', $post)->with('info', 'El post ' . $post->name . ' se creó con éxito');
     }
 
 
@@ -59,6 +59,9 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
+        //policy
+        $this->authorize('author', $post);
+
         /*  metodo pluck genera array pero solo con el campo name de cada objeto  y la función  prepend agrega un campo al comienzo del array en la vista se ve*/
         $categories = Category::pluck('name', 'id');
         $tags = Tag::all();
@@ -68,6 +71,8 @@ class PostController extends Controller
 
     public function update(PostRequest $request, Post $post)
     {
+        $this->authorize('author', $post);
+
         $post->update($request->all());
 
         if ($request->file('file')) {
@@ -95,13 +100,14 @@ class PostController extends Controller
             $post->tags()->sync($request->tags);
         }
 
-        return redirect()->route('admin.posts.edit', $post)->with('info', 'El post se actualizó con éxito');
+        return redirect()->route('admin.posts.index', $post)->with('info', 'El post se actualizó con éxito');
     }
 
 
     public function destroy(Post $post)
     {
-        
+        $this->authorize('author', $post);
+
         $post->delete();
 
         return redirect()->route('admin.posts.index', $post)->with('info', 'El post se eliminó con éxito');

@@ -3,17 +3,15 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <a class="btn btn-link" href="{{ route('admin.posts.index') }}"><u>Volver</u></a>
-    <h1>Editar post</h1>
+
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>Editar post</h1>
+        <div><a class="btn btn-link" href="{{ route('admin.posts.index') }}"><u>Volver</u></a></div>
+    </div>
+
 @stop
 
 @section('content')
-    @if (session('info'))
-        <div class="alert alert-success">
-            <strong>{{ session('info') }}</strong>
-        </div>
-    @endif
-
     <div class="card">
         <div class="card-body">
             {{--  para que no me aparezca el autocompletado cuando escribo en el input  --}}

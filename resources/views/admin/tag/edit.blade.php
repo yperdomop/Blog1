@@ -3,40 +3,42 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <a class="btn btn-link" href="{{ route('admin.tags.index') }}"><u>Volver</u></a>
-    <h1>Editar la etiqueta</h1>
-@stop
 
-@section('content')
-    <div class="card">
-        <div class="card-body">
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>Editar la etiqueta</h1>
+        <div><a class="btn btn-link" href="{{ route('admin.tags.index') }}"><u>Volver</u></a></div>
+    @stop
 
-            {!! Form::model($tag, ['route' => ['admin.tags.update', $tag], 'method' => 'put']) !!}
-            @include('admin.tag.partials.form')
+    @section('content')
+        <div class="card">
+            <div class="card-body">
 
-            {!! Form::submit('Actualizar etiqueta', ['class' => 'btn btn-primary']) !!}
-            {!! Form::close() !!}
+                {!! Form::model($tag, ['route' => ['admin.tags.update', $tag], 'method' => 'put']) !!}
+                @include('admin.tag.partials.form')
 
+                {!! Form::submit('Actualizar etiqueta', ['class' => 'btn btn-primary']) !!}
+                {!! Form::close() !!}
+
+            </div>
         </div>
-    </div>
-@stop
+    @stop
 
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
+    @section('css')
+        <link rel="stylesheet" href="/css/admin_custom.css">
+    @stop
 
-@section('js')
+    @section('js')
 
-    <script src="{{ asset('vendor/jQuery-Plugin-stringToSlug-1.3/jquery.stringToSlug.min.js') }}"></script>
+        <script src="{{ asset('vendor/jQuery-Plugin-stringToSlug-1.3/jquery.stringToSlug.min.js') }}"></script>
 
-    <script>
-        $(document).ready(function() {
-            $("#name").stringToSlug({
-                setEvents: 'keyup keydown blur',
-                getPut: '#slug',
-                space: '-'
+        <script>
+            $(document).ready(function() {
+                $("#name").stringToSlug({
+                    setEvents: 'keyup keydown blur',
+                    getPut: '#slug',
+                    space: '-'
+                });
             });
-        });
-    </script>
+        </script>
 
-@endsection
+    @endsection

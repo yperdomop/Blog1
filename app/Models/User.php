@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+//pegamos esta linea para utilizar el modelo de permisos de usuario
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
@@ -17,15 +19,17 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    //pegamos esta linea para utilizar el modelo de permisos de usuario
+    use HasRoles;
 
-  
+
     protected $fillable = [
         'name',
         'email',
         'password',
     ];
 
-   
+
     protected $hidden = [
         'password',
         'remember_token',
@@ -33,18 +37,19 @@ class User extends Authenticatable
         'two_factor_secret',
     ];
 
-  
+
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
 
-   
+
     protected $appends = [
         'profile_photo_url',
     ];
 
     //relacion uno a muchos
-    public function posts(){
+    public function posts()
+    {
         return $this->hasMany(Post::class);
     }
 }

@@ -3,11 +3,16 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <a class="btn btn-link" href="{{ route('admin.posts.index') }}"><u>Volver</u></a>
-    <h1>Crear nuevo post</h1>
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>Crear nuevo post</h1>
+        <div>
+            <a class="btn btn-link" href="{{ route('admin.posts.index') }}"><u>Volver</u></a>
+        </div>
+    </div>
 @stop
 
 @section('content')
+
     <div class="card">
         <div class="card-body">
             {{--  para que no me aparezca el autocompletado cuando escribo en el input  --}}

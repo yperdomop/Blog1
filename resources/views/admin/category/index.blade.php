@@ -3,7 +3,8 @@
 @section('title', 'Prueba')
 
 @section('content_header')
-    <h1>Lista de Categorias</h1>
+    <a class="btn btn-secondary btn-sm float-right" href="{{ route('admin.categories.create') }}">Agregar categoría</a>
+    <h1>Lista de categorias</h1>
 @stop
 
 @section('content')
@@ -11,13 +12,13 @@
     @if (session('info'))
         <div class="alert alert-success">
             <strong>{{ session('info') }}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true" style="color: white;">&times;</span>
+            </button>
         </div>
     @endif
 
     <div class="card">
-        <div class="card-header">
-            <a class="btn btn-secondary" href="{{ route('admin.categories.create') }}">Agregar Categoria</a>
-        </div>
         <div class="card-body">
             <table class="table table-striped">
                 <thead>
@@ -55,7 +56,7 @@
 
 
 @section('js')
-    <!-- Incluye SweetAlert2 en tu página (asegúrate de incluirlo antes de este script) -->
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <script>
